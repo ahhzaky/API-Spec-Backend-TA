@@ -7,8 +7,19 @@ info:
     name : "Ahmad Zaky"
     email : "ahmadzaky@mhs.unsyiah.ac.id"
 servers:
-  - url: "https://demo.identityserver.io/api/v1/"
-    description: "Identity Server test API Backend Donation UMKM"
+  - url: "https://localhost:9990/api/v1/"
+    description: "API Gateway"
+    variables: 
+      environment: 
+        default: "dev"
+        description: "Server Enviroment"  
+        enum :
+          - "dev"
+          - "qa"
+          - "prod"
+
+  - url: "https://localhost:9991/api/v1/"
+    description: "Service User Investore"
     variables: 
       environment: 
         default: "dev"
@@ -18,8 +29,19 @@ servers:
           - "qa"
           - "prod" 
 
-  - url: "https://localhost:9999/api/v1/"
-    description: "service user investor"
+  - url: "https://localhost:9992/api/v1/"
+    description: "service user campaign"
+    variables: 
+      environment: 
+        default: "dev"
+        description: "Server Enviroment"  
+        enum :
+          - "dev"
+          - "qa"
+          - "prod"
+
+  - url: "https://localhost:9993/api/v1/"
+    description: "service user reviewer"
     variables: 
       environment: 
         default: "dev"
@@ -28,8 +50,61 @@ servers:
           - "dev"
           - "qa"
           - "prod" 
+  
+  - url: "https://localhost:9994/api/v1/"
+    description: "Service detail & campaign "
+    variables: 
+      environment: 
+        default: "dev"
+        description: "Server Enviroment"  
+        enum :
+          - "dev"
+          - "qa"
+          - "prod"
 
+  - url: "https://localhost:9995/api/v1/"
+    description: "Service transaction "
+    variables: 
+      environment: 
+        default: "dev"
+        description: "Server Enviroment"  
+        enum :
+          - "dev"
+          - "qa"
+          - "prod"
 
+  - url: "https://localhost:9996/api/v1/"
+    description: "Service reviewer deatil "
+    variables: 
+      environment: 
+        default: "dev"
+        description: "Server Enviroment"  
+        enum :
+          - "dev"
+          - "qa"
+          - "prod"
+  
+  - url: "https://localhost:9997/api/v1/"
+    description: "Service return profit"
+    variables: 
+      environment: 
+        default: "dev"
+        description: "Server Enviroment"  
+        enum :
+          - "dev"
+          - "qa"
+          - "prod"
+  
+  - url: "https://localhost:9998/api/v1/"
+    description: "Service admin"
+    variables: 
+      environment: 
+        default: "dev"
+        description: "Server Enviroment"  
+        enum :
+          - "dev"
+          - "qa"
+          - "prod"
 
 components:
   securitySchemes:
@@ -44,7 +119,8 @@ components:
 security:
   - identity_server_auth:
     - api
-
+    
+# PATH Router
 paths:
   /test/{test}:
     get:
@@ -96,17 +172,88 @@ paths:
         default:
           description: unexpected error
 
-    
-  /users:
-    post:
-      summary: Create users invetor
-      operationId: createUsers
-      tags:
-        - user investor
-      responses:
-        201:
-          description: Null response
-        default:
-          description: unexpected error
-          
+  # create akun user investor
+  /users_investore/register:
+      post:
+        tags:
+          - "User investore"
+        summary: "RegisterUserInvestore"
+        operationId: "registerUserInvetore"
+        description: User Login
+        responses:
+          "201":
+            description: Null response
+          default:
+            description: unexpected error
+
+
+  /users_investore/login:
+      post:
+        tags:
+          - "User investore"
+        summary: "LoginUserInvestore"
+        operationId: "loginUser"
+        description: User Login
+        responses:
+          "201":
+            description: Null response
+          default:
+            description: unexpected error
+  
+  # create akun user Campaign 
+  /users_campaign/register:
+      post:
+        tags:
+          - "User Campaign"
+        summary: "RegisterUserCampaign"
+        operationId: "registerUserInvetore"
+        description: User campaign Login
+        responses:
+          "201":
+            description: Null response
+          default:
+            description: unexpected error
+
+
+  /users_campaign/login:
+      post:
+        tags:
+          - "User Campaign"
+        summary: "LoginUserCampaign"
+        operationId: "loginUser"
+        description: User Campaign Register
+        responses:
+          "201":
+            description: Null response
+          default:
+            description: unexpected error
+
+
+# create akun user Campaign 
+  /users_reviewer/register:
+      post:
+        tags:
+          - "User reviewer"
+        summary: "RegisterUserreviewer"
+        operationId: "registerUserInvetore"
+        description: User reviewer Login
+        responses:
+          "201":
+            description: Null response
+          default:
+            description: unexpected error
+
+
+  /users_reviewer/login:
+      post:
+        tags:
+          - "User reviewer"
+        summary: "LoginUserreviewer"
+        operationId: "loginUserReviewer"
+        description: User reviewer Register
+        responses:
+          "201":
+            description: Null response
+          default:
+            description: unexpected error
 
