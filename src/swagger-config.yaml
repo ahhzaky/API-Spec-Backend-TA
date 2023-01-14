@@ -1,0 +1,112 @@
+openapi: "3.0.0"
+info:
+  version: "0.0.1"
+  title: "API Backend Donation UMKM"
+  description: "Api specification for backend Donation UMKM"
+  "contact" : 
+    name : "Ahmad Zaky"
+    email : "ahmadzaky@mhs.unsyiah.ac.id"
+servers:
+  - url: "https://demo.identityserver.io/api/v1/"
+    description: "Identity Server test API Backend Donation UMKM"
+    variables: 
+      environment: 
+        default: "dev"
+        description: "Server Enviroment"  
+        enum :
+          - "dev"
+          - "qa"
+          - "prod" 
+
+  - url: "https://localhost:9999/api/v1/"
+    description: "service user investor"
+    variables: 
+      environment: 
+        default: "dev"
+        description: "Server Enviroment"  
+        enum :
+          - "dev"
+          - "qa"
+          - "prod" 
+
+
+
+components:
+  securitySchemes:
+    # See https://demo.identityserver.io/ for configuration details.
+    identity_server_auth:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: "https://demo.identityserver.io/connect/authorize"
+          scopes:
+            api: "api"
+security:
+  - identity_server_auth:
+    - api
+
+paths:
+  /test/{test}:
+    get:
+      summary: "Runs a test request against the Identity Server demo API"
+      tags:
+        - test
+      responses:
+        401:
+          description: "Unauthorized"
+        200:
+          description: "OK"
+      parameters: 
+        - name: "include_done"
+          description: "Include done todolist in the result"
+          required: true
+          in: "query"
+          schema:
+            type: "string"        
+
+        - name: "include_all"
+          description: "Include all todolist in the result"
+          required: false
+          in: "query"
+          schema:
+            type: "string" 
+      
+
+    post:
+      summary: "Runs a test request against the Identity Server demo API"
+      tags:
+        - test
+      responses:
+        401:
+          description: "Unauthorized"
+        200:
+          description: "OK"
+
+        
+  
+  /test/hub:
+    get:
+      summary: Create a test
+      operationId: createPets
+      tags:
+        - test
+      responses:
+        "201":
+          description: Null response
+        default:
+          description: unexpected error
+
+    
+  /users:
+    post:
+      summary: Create users invetor
+      operationId: createUsers
+      tags:
+        - user investor
+      responses:
+        201:
+          description: Null response
+        default:
+          description: unexpected error
+          
+
