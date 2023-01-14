@@ -9,6 +9,5 @@ It includes CSS and OAuth configuration.
 
 
 #### Usage
-    rename `_sample_package.json` to `package.json`
     npm install
     npm start
