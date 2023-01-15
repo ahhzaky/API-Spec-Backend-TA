@@ -257,3 +257,86 @@ paths:
           default:
             description: unexpected error
 
+# create Campaign detail
+  /campaign_detail:
+      post:
+        tags:
+          - "Campaign Detail"
+        summary: "Campaign Detail"
+        operationId: "campaignDetail"
+        description: Create Campaign for user Campaign
+        responses:
+          "201":
+            description: Null response
+          default:
+            description: unexpected error
+
+# create Campaign images
+  /campaign_images:
+      post:
+        tags:
+          - "Campaign images"
+        summary: "Campaign images"
+        operationId: "campaignImages"
+        description: Create Campaign images for campaign details
+        responses:
+          "201":
+            description: Null response
+          default:
+            description: unexpected error
+
+# create reviewer detail
+  /reviewer detail:
+      post:
+        tags:
+          - "reviewer detail"
+        summary: "Reviewer Detail"
+        operationId: "reviewerDetail"
+        description: Create reviewer for aprove campaign form campaign detail
+        responses:
+          "201":
+            description: Null response
+          default:
+            description: unexpected error
+
+# create transaction
+  /transaction:
+      post:
+        tags:
+          - "Transaction"
+        summary: "Transaction to backend"
+        operationId: "transaction"
+        description: Create transaction from user investor to campaign detail
+        responses:
+          "201":
+            description: Null response
+          default:
+            description: unexpected error
+
+# create retutn profit
+  /return_profit:
+      post:
+        tags:
+          - "Return Profit"
+        summary: "Return profit to user"
+        operationId: "returnProfit"
+        description: Create profit to user investor and user reviewer
+        responses:
+          "201":
+            description: Null response
+          default:
+            description: unexpected error
+
+# create transaction
+  /admin_on:
+      post:
+        tags:
+          - "ADMIN"
+        summary: "Admin create"
+        operationId: "admin"
+        description: Create admin for accsess all data and db 
+        responses:
+          "201":
+            description: Null response
+          default:
+            description: unexpected error
