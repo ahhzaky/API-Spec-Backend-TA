@@ -176,7 +176,7 @@ paths:
   /users_investore/register:
       post:
         tags:
-          - "User investore"
+          - "User Investore"
         summary: "RegisterUserInvestore"
         operationId: "registerUserInvetore"
         description: User Login
