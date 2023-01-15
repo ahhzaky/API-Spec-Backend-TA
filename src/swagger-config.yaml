@@ -190,7 +190,7 @@ paths:
   /users_investore/login:
       post:
         tags:
-          - "User investore"
+          - "User Investore"
         summary: "LoginUserInvestore"
         operationId: "loginUser"
         description: User Login
