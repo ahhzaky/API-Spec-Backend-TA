@@ -1,9 +1,11 @@
 openapi: "3.0.0"
 info:
   version: "0.0.1"
-  title: "API Backend Donation UMKM"
-  description: "Api specification for backend Donation UMKM"
-  "contact" : 
+  title: "API Backend Donation UMKM - OpenAPI 3.0"
+  description: |-
+    Ini adalah spesifikasi Api untuk backend Donation UMKM. Dirancang agar memudahkan untuk mendesain api yang lebih terarah. 
+
+  contact : 
     name : "Ahmad Zaky"
     email : "ahmadzaky@mhs.unsyiah.ac.id"
 servers:
@@ -106,16 +108,7 @@ servers:
           - "qa"
           - "prod"
 
-components:
-  securitySchemes:
-    # See https://demo.identityserver.io/ for configuration details.
-    identity_server_auth:
-      type: oauth2
-      flows:
-        implicit:
-          authorizationUrl: "https://demo.identityserver.io/connect/authorize"
-          scopes:
-            api: "api"
+
 security:
   - identity_server_auth:
     - api
@@ -180,9 +173,20 @@ paths:
         summary: "RegisterUserInvestore"
         operationId: "registerUserInvetore"
         description: User Login
+        requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserInvestore'
         responses:
-          "201":
-            description: Null response
+          "200":
+            description: Add a new user investore
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ApiResponseUserInvestore'
+          '405':
+            description: Invalid input
           default:
             description: unexpected error
 
@@ -340,3 +344,207 @@ paths:
             description: Null response
           default:
             description: unexpected error
+
+components:
+  securitySchemes:
+    # See https://demo.identityserver.io/ for configuration details.
+    identity_server_auth:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: "https://demo.identityserver.io/connect/authorize"
+          scopes:
+            api: "api"
+  schemas:   
+    ApiResponseUserInvestore:
+      type: object
+      properties:
+        meta:
+          type: object  
+          $ref: '#/components/schemas/StatusCodeSuccess'
+        data:
+          type: object    
+          $ref: '#/components/schemas/UserInvestore'
+      xml:
+        name: '##default'
+    StatusCodeSuccess:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Your account has been created
+        code:
+          type: integer
+          format: int32
+          example: 200
+        status:
+          type: string
+          example: success
+      xml:
+        name: '##default'
+    # UserInvestore    
+    UserInvestore:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: id user investore
+          format: int64
+          example: 10
+        firstName:
+          type: string
+          description: first name for user Invetore
+          format: varchar(255)
+          example: ahmad
+        lastName:
+          type: string
+          description: last name for user Invetore
+          format: varchar(255)
+          example: Zaky
+        email:
+          type: string
+          description: email for user Invetore
+          format: varchar(255)
+          example: zaky@email.com
+        phone:
+          type: integer
+          description: phone whatsapp for user Invetore
+          format: int(11)
+          example: '62856734'
+        password:
+          type: string
+          description: password for user Invetore
+          format: varchar(255)
+          example: '12345' 
+        avatar_file_name:
+          type: string
+          description: file avatar images for user Invetore
+          format: varchar(255)
+          example: "/path/folder"
+        token:
+          type: string
+          description: token akses for user Invetore
+          format: varchar(255)
+          example: 'GENERATEBYJWT'
+        role:
+          type: string
+          description: role user Invetore
+          format: varchar(255)
+          example: pending or deactice or activate 
+        createAt:
+          type: string
+          description: time create db for user Invetore
+          format: datetime
+          example: 'datetime'
+        updateAt:
+          type: string
+          description: time update db for user Invetore
+          format: datetime
+          example: 'datetime'
+      xml:
+        name: user_investore
+    # UserCampaign
+    UserCampaign:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+      xml:
+        name: '##default'
+    # UserReviewer
+    UserReviewer:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+      xml:
+        name: '##default'
+    #  CampaignDetail    
+    CampaignDetail:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+      xml:
+        name: '##default'
+    # ReviewerDetail:
+    ReviewerDetail:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+      xml:
+        name: '##default'
+    # Transaction:
+    Transaction:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+      xml:
+        name: '##default'
+    # ReturnProfit    
+    ReturnProfit:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+      xml:
+        name: '##default'
+    # Admin
+    Admin:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+      xml:
+        name: '##default'
+    
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+      xml:
+        name: '##default'
+
