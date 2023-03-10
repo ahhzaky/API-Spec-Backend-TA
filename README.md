@@ -1,6 +1,8 @@
 
 ### Demo of Swagger UI with Webpack.
 
+## Api Docs
+
 This `webpack-getting-started` sample is for reference only.
 
 It includes CSS and OAuth configuration.
