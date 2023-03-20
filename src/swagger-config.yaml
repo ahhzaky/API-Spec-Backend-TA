@@ -9,7 +9,7 @@ info:
     name : "Ahmad Zaky"
     email : "ahmadzaky@mhs.unsyiah.ac.id"
 servers:
-  - url: "https://localhost:9990/api/v1/"
+  - url: "http://localhost:9990/api/v1/"
     description: "API Gateway"
     variables: 
       environment: 
@@ -31,7 +31,7 @@ servers:
           - "qa"
           - "prod" 
 
-  - url: "https://localhost:9992/api/v1/"
+  - url: "http://localhost:9992/api/v1/"
     description: "service user campaign"
     variables: 
       environment: 
@@ -42,7 +42,7 @@ servers:
           - "qa"
           - "prod"
 
-  - url: "https://localhost:9993/api/v1/"
+  - url: "http://localhost:9993/api/v1/"
     description: "service user reviewer"
     variables: 
       environment: 
@@ -53,7 +53,7 @@ servers:
           - "qa"
           - "prod" 
   
-  - url: "https://localhost:9994/api/v1/"
+  - url: "http://localhost:9994/api/v1/"
     description: "Service detail & campaign "
     variables: 
       environment: 
@@ -64,7 +64,7 @@ servers:
           - "qa"
           - "prod"
 
-  - url: "https://localhost:9995/api/v1/"
+  - url: "http://localhost:9995/api/v1/"
     description: "Service transaction "
     variables: 
       environment: 
@@ -75,7 +75,7 @@ servers:
           - "qa"
           - "prod"
 
-  - url: "https://localhost:9996/api/v1/"
+  - url: "http://localhost:9996/api/v1/"
     description: "Service reviewer deatil "
     variables: 
       environment: 
@@ -86,7 +86,7 @@ servers:
           - "qa"
           - "prod"
   
-  - url: "https://localhost:9997/api/v1/"
+  - url: "http://localhost:9997/api/v1/"
     description: "Service return profit"
     variables: 
       environment: 
@@ -97,7 +97,7 @@ servers:
           - "qa"
           - "prod"
   
-  - url: "https://localhost:9998/api/v1/"
+  - url: "http://localhost:9998/api/v1/"
     description: "Service admin"
     variables: 
       environment: 
@@ -115,56 +115,6 @@ security:
     
 # PATH Router
 paths:
-  /test/{test}:
-    get:
-      summary: "Runs a test request against the Identity Server demo API"
-      tags:
-        - test
-      responses:
-        401:
-          description: "Unauthorized"
-        200:
-          description: "OK"
-      parameters: 
-        - name: "include_done"
-          description: "Include done todolist in the result"
-          required: true
-          in: "query"
-          schema:
-            type: "string"        
-
-        - name: "include_all"
-          description: "Include all todolist in the result"
-          required: false
-          in: "query"
-          schema:
-            type: "string" 
-      
-
-    post:
-      summary: "Runs a test request against the Identity Server demo API"
-      tags:
-        - test
-      responses:
-        401:
-          description: "Unauthorized"
-        200:
-          description: "OK"
-
-        
-  
-  /test/hub:
-    get:
-      summary: Create a test
-      operationId: createPets
-      tags:
-        - test
-      responses:
-        "201":
-          description: Null response
-        default:
-          description: unexpected error
-
   # create akun user investor
   /register_investor:
       post:
@@ -172,8 +122,9 @@ paths:
           - "User Investore"
         summary: "RegisterUserInvestore"
         operationId: "registerUserInvetore"
-        description: User Login
+        description: Register for user investor
         requestBody:
+          required: true
           content:
             application/json:
               schema:
@@ -181,6 +132,10 @@ paths:
         responses:
           "200":
             description: Add a new user investore
+            headers:
+              Access-Control-Allow-Origin:
+                schema:
+                  type: string
             content:
               application/json:
                 schema:
@@ -372,7 +327,7 @@ components:
       properties:
         message:
           type: string
-          example: Your account has been created
+          example: Account has been registered
         code:
           type: integer
           format: int32
@@ -400,12 +355,12 @@ components:
           type: string
           description: email for user Invetore
           format: varchar(255)
-          example: zaky@email.com
+          example: zaky@gmail.com
         password:
           type: string
           description: password for user Invetore
           format: varchar(255)
-          example: '12345' 
+          example: 'testing12345' 
       xml:
         name: user_investore
     # UserCampaign
