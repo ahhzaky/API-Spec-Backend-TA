@@ -20,7 +20,7 @@ servers:
           - "qa"
           - "prod"
 
-  - url: "https://localhost:9991/api/v1/"
+  - url: "http://localhost:8082/api/v1/"
     description: "Service User Investore"
     variables: 
       environment: 
@@ -166,7 +166,7 @@ paths:
           description: unexpected error
 
   # create akun user investor
-  /users_investore/register:
+  /register_investor:
       post:
         tags:
           - "User Investore"
@@ -386,61 +386,26 @@ components:
     UserInvestore:
       type: object
       properties:
-        id:
-          type: integer
-          description: id user investore
-          format: int64
-          example: 10
-        firstName:
+        name:
           type: string
           description: first name for user Invetore
           format: varchar(255)
           example: ahmad
-        lastName:
-          type: string
-          description: last name for user Invetore
-          format: varchar(255)
-          example: Zaky
-        email:
-          type: string
-          description: email for user Invetore
-          format: varchar(255)
-          example: zaky@email.com
         phone:
           type: integer
           description: phone whatsapp for user Invetore
           format: int(11)
           example: '62856734'
+        email:
+          type: string
+          description: email for user Invetore
+          format: varchar(255)
+          example: zaky@email.com
         password:
           type: string
           description: password for user Invetore
           format: varchar(255)
           example: '12345' 
-        avatar_file_name:
-          type: string
-          description: file avatar images for user Invetore
-          format: varchar(255)
-          example: "/path/folder"
-        token:
-          type: string
-          description: token akses for user Invetore
-          format: varchar(255)
-          example: 'GENERATEBYJWT'
-        role:
-          type: string
-          description: role user Invetore
-          format: varchar(255)
-          example: pending or deactice or activate 
-        createAt:
-          type: string
-          description: time create db for user Invetore
-          format: datetime
-          example: 'datetime'
-        updateAt:
-          type: string
-          description: time update db for user Invetore
-          format: datetime
-          example: 'datetime'
       xml:
         name: user_investore
     # UserCampaign
