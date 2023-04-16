@@ -18,7 +18,7 @@ servers:
         enum :
           - "dev"
           - "qa"
-          - "prod"
+          - "main"
 
   - url: "http://localhost:8082/api/v1/"
     description: "Service User Investore"
@@ -29,7 +29,7 @@ servers:
         enum :
           - "dev"
           - "qa"
-          - "prod" 
+          - "main" 
 
   - url: "http://localhost:9992/api/v1/"
     description: "service user campaign"
@@ -40,7 +40,7 @@ servers:
         enum :
           - "dev"
           - "qa"
-          - "prod"
+          - "main"
 
   - url: "http://localhost:9993/api/v1/"
     description: "service user reviewer"
@@ -51,7 +51,7 @@ servers:
         enum :
           - "dev"
           - "qa"
-          - "prod" 
+          - "main" 
   
   - url: "http://localhost:9994/api/v1/"
     description: "Service detail & campaign "
@@ -62,7 +62,7 @@ servers:
         enum :
           - "dev"
           - "qa"
-          - "prod"
+          - "main"
 
   - url: "http://localhost:9995/api/v1/"
     description: "Service transaction "
@@ -73,7 +73,7 @@ servers:
         enum :
           - "dev"
           - "qa"
-          - "prod"
+          - "main"
 
   - url: "http://localhost:9996/api/v1/"
     description: "Service reviewer deatil "
@@ -84,7 +84,7 @@ servers:
         enum :
           - "dev"
           - "qa"
-          - "prod"
+          - "main"
   
   - url: "http://localhost:9997/api/v1/"
     description: "Service return profit"
@@ -95,7 +95,7 @@ servers:
         enum :
           - "dev"
           - "qa"
-          - "prod"
+          - "main"
   
   - url: "http://localhost:9998/api/v1/"
     description: "Service admin"
@@ -106,7 +106,7 @@ servers:
         enum :
           - "dev"
           - "qa"
-          - "prod"
+          - "main"
 
 
 security:
@@ -120,8 +120,8 @@ paths:
       post:
         tags:
           - "User Investore"
-        summary: "RegisterUserInvestore"
-        operationId: "registerUserInvetore"
+        summary: "RegisterInvestore"
+        operationId: "registerInvetore"
         description: Register for user investor
         requestBody:
           required: true
@@ -145,19 +145,31 @@ paths:
           default:
             description: unexpected error
 
-
-  /users_investore/login:
+  /login_investore:
       post:
         tags:
           - "User Investore"
-        summary: "LoginUserInvestore"
+        summary: "LoginInvestore"
         operationId: "loginUser"
         description: User Login
+        responses:
+          "200":
+            description: Null response
+          default:
+            description: unexpected error
+
+  /email_check:
+      post:
+        tags:
+          - "User Investore"
+        summary: "emailCheckInvestore"
+        operationId: "emailCheck"
+        description: Email Checker
         responses:
           "201":
             description: Null response
           default:
-            description: unexpected error
+            description: unexpected error           
   
   # create akun user Campaign 
   /users_campaign/register:
